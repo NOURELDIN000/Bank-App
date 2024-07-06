@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import CreateCustomer from "./features/customer/CreateCustomer";
+import Customer from "./features/customer/Customer";
+import AccountOperations from "./features/account/AccountOperations";
+import { useSelector } from "react-redux";
 
 function App() {
+  const customer = useSelector((state) => state.customer.fullName);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {!customer ? (
+        <CreateCustomer />
+      ) : (
+        <>
+          <Customer />
+
+          <AccountOperations />
+        </>
+      )}
     </div>
   );
 }
